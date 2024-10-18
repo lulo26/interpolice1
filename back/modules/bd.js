@@ -8,7 +8,7 @@ const mysql = require("mysql2"); /* principio de inmutabilidad */
 const cnx = mysql.createConnection({
   host: "localhost",
   user: "root",
-  database: "sena",
+  database: "interpolice",
 });
 
 /* connection.query("SELECT * FROM aprendiz", (err, results) => {
