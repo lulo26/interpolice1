@@ -557,6 +557,7 @@
                   <table class="table table-striped table-hover">
                     <thead>
                       <tr>
+                        <th scope="col">id</th>
                         <th scope="col">Nombres</th>
                         <th scope="col">Apellidos</th>
                         <th scope="col">Email</th>
@@ -703,20 +704,21 @@
                       type="file"
                       id="foto"
                       name="foto"
+                      accept=".png, .jpg, .webp, .gif"
                     />
                   </div>
                 </div>
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-bs-dismiss="modal"
+                  >
+                    Close
+                  </button>
+                  <button type="submit" class="btn btn-success">Guardar</button>
+                </div>
               </form>
-            </div>
-            <div class="modal-footer">
-              <button
-                type="button"
-                class="btn btn-secondary"
-                data-bs-dismiss="modal"
-              >
-                Close
-              </button>
-              <button type="submit" class="btn btn-success">Guardar</button>
             </div>
           </div>
         </div>

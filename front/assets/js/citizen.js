@@ -40,32 +40,34 @@ btnNuevo.addEventListener("click", () => {
 
 let api = "http://localhost:4200/api/citizen/";
 
-document.addEventListener("DOMContentLoaded", () => {
-  listartodos();
-});
-
+// mostrar elementos en la tabla
 function listartodos() {
   fetch(api + "listartodos")
     .then((res) => res.json())
     .then((res) => {
       res.citizen.forEach((citizen) => {
         let fila = `<tr>
-        <td>${citizen.id}</td>
+        <td>${citizen.idciudadano}</td>
         <td>${citizen.nombre}</td>
         <td>${citizen.apellido}</td>
         <td>${citizen.email}</td>
         <td>${citizen.apodo}</td>
-        <td>${citizen.fecha}</td>
-        <td>${citizen.especie}</td>
-        <td>${citizen.rol}</td>
+        <td>${citizen.fechaorigen}</td>
+        <td>${citizen.nombre_especie}</td>
+        <td>${citizen.nombre_rol}</td>
         <td><button class="btnBorrar btn btn-danger"><i class="bi bi-trash"></i></button></td>
-        <td><button class="btnEditar btn btn-secondary"><i class="bi bi-pencil-square"></i></button></td>
+        <td><button class="btnEditar btn btn-primary"><i class="bi bi-pencil-square"></i></button></td>
         </tr><br>`;
         contenido.innerHTML += fila;
       });
     });
 }
 
+document.addEventListener("DOMContentLoaded", () => {
+  listartodos();
+});
+
+// boton submit
 frmCitizen.addEventListener("submit", (e) => {
   e.preventDefault();
   // crear ciudadano
@@ -81,12 +83,14 @@ frmCitizen.addEventListener("submit", (e) => {
         email: email.value,
         apodo: apodo.value,
         fecha: fecha.value,
+        password: password.value,
         especie: especie.value,
         rol: rol.value,
       }),
     })
       .then((res) => res.json())
       .then((res) => {
+        alert("exito");
         frmCrearCitizen.hide();
         location.reload();
       });
@@ -118,16 +122,14 @@ frmCitizen.addEventListener("submit", (e) => {
         location.reload();
       });
   }
+  frmCrearCitizen.hide();
 });
 
-/* function listarTodos() {
-  fetch(api + "listarTodos")
-    .then((res) => res.json())
-    .then((res) => {
-      alert(res.status);
-      alert(res.mensaje);
-      res.citizen.map((citizen) => {
-        
-      });
-    });
-} */
+// llamar formulario de edición
+let idform = "";
+on(document, "click", ".btnEditar", (e) => {
+  console.log("click!");
+  /* let fila = e.target.parentNode.parentNode.parentNode;
+  let idform = fila.children[0].innerText;
+  idform = id; */
+});
