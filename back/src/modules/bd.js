@@ -9,6 +9,13 @@ const cnx = mysql.createConnection({
   database: "interpolice",
 });
 
-cnx.query("SELECT * FROM citizen", (err, results) => {
-  console.log(results);
+cnx.connect((error) => {
+  if (error) {
+    console.log(`error en la conexion: \n ${error}`);
+    // throw ""error en la cnexion aa la 80;
+  } else {
+    console.log("conexión existosa a la BD");
+  }
 });
+
+module.exports = cnx;
