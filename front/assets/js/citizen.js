@@ -18,6 +18,14 @@ let foto = document.querySelector("#foto");
 
 let frmAction = "";
 
+const on = (element, event, selector, handler) => {
+  element.addEventListener(event, (e) => {
+    if (e.target.closest(selector)) {
+      handler(e);
+    }
+  });
+};
+
 // carga la modal
 const frmCrearCitizen = new bootstrap.Modal(
   document.getElementById("frmCrearCitizen")
@@ -98,7 +106,7 @@ frmCitizen.addEventListener("submit", (e) => {
 
   // editar ciudadano
   if (frmAction === "editar") {
-    fetch(api + "crear", {
+    fetch(api + "editar", {
       method: "PUT",
       headers: {
         "content-type": "application/json",
@@ -125,11 +133,40 @@ frmCitizen.addEventListener("submit", (e) => {
   frmCrearCitizen.hide();
 });
 
+on(document, "click", ".btnBorrar", (e) => {
+  let fila = e.target.parentNode.parentNode.parentNode;
+  let idform = fila.firstElementChild.innerText;
+  let respuesta = window.confirm(
+    `seguro que desea eliminar el registro con id: ${idform}`
+  );
+  console.log(idform);
+
+  if (respuesta) {
+    fetch(api + "borrar/" + idform, {
+      method: "DELETE",
+    })
+      .then((res) => res.json())
+      .then(() => {
+        location.reload();
+      });
+  }
+});
+
 // llamar formulario de edición
 let idform = "";
 on(document, "click", ".btnEditar", (e) => {
-  console.log("click!");
-  /* let fila = e.target.parentNode.parentNode.parentNode;
-  let idform = fila.children[0].innerText;
-  idform = id; */
+  let fila = e.target.parentNode.parentNode.parentNode;
+  console.log(fila);
+  let idciudadano = fila.children[0].innerText;
+  console.log(idform);
+  idform = idciudadano;
+  nombre.value = fila.children[1].innerText;
+  apellido.value = fila.children[2].innerText;
+  email.value = fila.children[3].innerText;
+  apodo.value = fila.children[4].innerText;
+  fecha.value = fila.children[5].innerText;
+  especie.value = fila.children[6].innerText;
+  rol.value = fila.children[7].innerText;
+  frmAction = "editar";
+  frmCrearCitizen.show();
 });

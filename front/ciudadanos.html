@@ -526,11 +526,11 @@
 
     <main id="main" class="main">
       <div class="pagetitle">
-        <h1>Personas</h1>
+        <h1>Ciudadanos</h1>
         <nav>
           <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="index.html">Inicio</a></li>
-            <li class="breadcrumb-item active">Consulta Personas</li>
+            <li class="breadcrumb-item active">Consulta ciudadanos</li>
           </ol>
         </nav>
       </div>
@@ -541,7 +541,7 @@
           <div class="col">
             <div class="card">
               <div class="card-header">
-                Consulta de personas
+                Consulta de ciudadanos
                 <button
                   id="btnNuevo"
                   type="button"
@@ -565,6 +565,7 @@
                         <th scope="col">fecha</th>
                         <th scope="col">Especie</th>
                         <th scope="col">Rol</th>
+                        <th scope="col">acciones</th>
                       </tr>
                     </thead>
                     <tbody id="contenido"></tbody>
@@ -595,7 +596,7 @@
             </div>
 
             <div class="modal-body">
-              <form class="row g-3" id="frmCitizen">
+              <form class="row g-3 needs-validation" id="frmCitizen" novalidate>
                 <div class="col-md-6">
                   <div class="form-floating">
                     <input
