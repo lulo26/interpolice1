@@ -56,10 +56,10 @@ function listartodos() {
       res.citizen.forEach((citizen) => {
         let fila = `<tr>
         <td>${citizen.idciudadano}</td>
-        <td>${citizen.nombre}</td>
-        <td>${citizen.apellido}</td>
-        <td>${citizen.email}</td>
-        <td>${citizen.apodo}</td>
+        <td>${citizen.nombre_ciudadano}</td>
+        <td>${citizen.apellido_ciudadano}</td>
+        <td>${citizen.email_ciudadano}</td>
+        <td>${citizen.apodo_ciudadano}</td>
         <td>${citizen.fechaorigen}</td>
         <td>${citizen.nombre_especie}</td>
         <td>${citizen.nombre_rol}</td>

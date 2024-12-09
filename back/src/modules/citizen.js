@@ -6,7 +6,7 @@ const citizen = express();
 // mostrtar los ciudadanos
 citizen.get("/api/citizen/listartodos", (req, res) => {
   let query =
-    "SELECT * FROM ciudadanos inner join especies on idespecie = especies_idespecie inner join roles on idrol = roles_idrol order by nombre asc";
+    "SELECT idciudadano, nombre_ciudadano, apellido_ciudadano, email_ciudadano, apodo_ciudadano, fechaorigen, nombre_especie, nombre_rol FROM ciudadanos inner join especies on idespecie = especies_idespecie inner join roles on idrol = roles_idrol order by nombre_ciudadano asc";
   bd.query(query, (error, citizen) => {
     if (error) {
       res.send({
@@ -28,11 +28,11 @@ citizen.get("/api/citizen/listartodos", (req, res) => {
 
 citizen.post("/api/citizen/crear", (req, res) => {
   let frmCitizenDatos = {
-    nombre: req.body.nombre,
-    apellido: req.body.apellido,
-    email: req.body.email,
-    apodo: req.body.apodo,
-    password: req.body.password,
+    nombre_ciudadano: req.body.nombre,
+    apellido_ciudadano: req.body.apellido,
+    email_ciudadano: req.body.email,
+    apodo_ciudadano: req.body.apodo,
+    password_ciudadano: req.body.password,
     fechaorigen: req.body.fecha,
     especies_idespecie: req.body.especie,
     roles_idrol: req.body.rol,
@@ -64,11 +64,11 @@ citizen.post("/api/citizen/crear", (req, res) => {
 citizen.put("/api/citizen/editar/:id", (req, res) => {
   let id = req.params.id;
   let frmDatos = {
-    nombre: req.body.nombre,
-    apellido: req.body.apellido,
-    email: req.body.email,
-    apodo: req.body.apodo,
-    password: req.body.password,
+    nombre_ciudadano: req.body.nombre,
+    apellido_ciudadano: req.body.apellido,
+    email_ciudadano: req.body.email,
+    apodo_ciudadano: req.body.apodo,
+    password_ciudadano: req.body.password,
     fechaorigen: req.body.fecha,
     especies_idespecie: req.body.especie,
     roles_idrol: req.body.rol,
