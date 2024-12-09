@@ -1,13 +1,11 @@
-// Modulo para administrar la info de los ciudadanos
 const express = require("express");
 const bd = require("./bd.js");
-const citizen = express();
+const species = express();
 
-// mostrtar los ciudadanos
-citizen.get("/api/citizen/listartodos", (req, res) => {
-  let query =
-    "SELECT idciudadano, nombre_ciudadano, apellido_ciudadano, email_ciudadano, apodo_ciudadano, fechaorigen, nombre_especie, nombre_rol FROM ciudadanos inner join especies on idespecie = especies_idespecie inner join roles on idrol = roles_idrol order by nombre_ciudadano asc";
-  bd.query(query, (error, citizen) => {
+// mostrar especies
+species.get("/api/species/listarespecies", (req, res) => {
+  let query = "SELECT * FROM especies order by nombre_especie asc";
+  bd.query(query, (error, species) => {
     if (error) {
       res.send({
         status: "error",
@@ -18,17 +16,17 @@ citizen.get("/api/citizen/listartodos", (req, res) => {
       res.send({
         status: "ok",
         mensaje: "consulta exitosa",
-        citizen: citizen,
+        species: species,
       });
     }
   });
 });
 
-// crear ciudadano
+// crear especies
 
-citizen.post("/api/citizen/crear", (req, res) => {
-  let frmCitizenDatos = {
-    nombre_ciudadano: req.body.nombre,
+species.post("/api/species/crear", (req, res) => {
+  let frmSpeciesDatos = {
+    nombre_especie: req.body.nombre,
     apellido_ciudadano: req.body.apellido,
     email_ciudadano: req.body.email,
     apodo_ciudadano: req.body.apodo,
@@ -115,4 +113,4 @@ citizen.delete("/api/citizen/borrar/:id", (req, res) => {
   });
 });
 
-module.exports = citizen;
+module.exports = species;

@@ -4,6 +4,7 @@
   "description": "gestion de antecedentes de ciudadanos",
   "main": "index.js",
   "scripts": {
+    "build": "netlify deploy --prod",
     "start": "node index.js"
   },
   "author": "",
@@ -11,8 +12,11 @@
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
-    "express": "^4.21.1",
+    "express": "^4.21.2",
     "mysql2": "^3.11.3",
-    "nodemon": "^3.1.7"
+    "netlify-cli": "^17.38.0",
+    "netlify-lambda": "^2.0.16",
+    "nodemon": "^3.1.7",
+    "serverless-http": "^3.2.0"
   }
 }
