@@ -3,7 +3,7 @@ let contenido = document.querySelector("#contenido");
 let btnNuevaEspecie = document.querySelector("#btnNuevaEspecie");
 
 //mostrar elementos en la tabla
-function listarEspecies() {
+function listartodos() {
   fetch(api + "listarespecies")
     .then((res) => res.json())
     .then((res) => {
@@ -20,7 +20,7 @@ function listarEspecies() {
 }
 
 window.addEventListener("DOMContentLoaded", (e) => {
-  listarEspecies();
+  listartodos();
 });
 
 // carga la modal

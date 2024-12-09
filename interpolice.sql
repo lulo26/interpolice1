@@ -69,8 +69,8 @@ INSERT INTO `ciudadanos` (`idciudadano`, `nombre_ciudadano`, `apellido_ciudadano
 
 CREATE TABLE `delitos` (
   `iddelito` int(11) NOT NULL,
-  `nombre_delito` varchar(250) NOT NULL,
-  `descripcion_delito` longtext DEFAULT NULL,
+  `nombre` varchar(250) NOT NULL,
+  `descripcion` longtext DEFAULT NULL,
   `grado_delitos_idgrado_delito` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
@@ -102,8 +102,8 @@ INSERT INTO `especies` (`idespecie`, `nombre_especie`) VALUES
 
 CREATE TABLE `grado_delitos` (
   `idgrado_delito` int(11) NOT NULL,
-  `grado_delito` varchar(150) NOT NULL,
-  `descripción_grado` longtext DEFAULT NULL
+  `grado` varchar(150) NOT NULL,
+  `descripción` longtext DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
@@ -237,3 +237,6 @@ ALTER TABLE `delitos`
   ADD CONSTRAINT `fk_delitos_grado_delitos1` FOREIGN KEY (`grado_delitos_idgrado_delito`) REFERENCES `grado_delitos` (`idgrado_delito`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
 
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

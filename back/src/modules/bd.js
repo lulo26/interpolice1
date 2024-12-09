@@ -3,21 +3,11 @@
 
 const mysql = require("mysql2");
 
-/* deploy 
-
 const cnx = mysql.createConnection({
   host: process.env.DB_HOST,
   user: process.env.DB_USERNAME,
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
-}); */
-
-// local
-
-const cnx = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  database: "interpolice",
 });
 
 cnx.connect((error) => {

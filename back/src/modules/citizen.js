@@ -115,4 +115,26 @@ citizen.delete("/api/citizen/borrar/:id", (req, res) => {
   });
 });
 
+// especies
+
+// mostrar especies
+citizen.get("/api/citizen/listarespecies", (req, res) => {
+  let query = "SELECT * FROM especies order by nombre_especie asc";
+  bd.query(query, (error, citizen) => {
+    if (error) {
+      res.send({
+        status: "error",
+        mensaje: "ocurrió un error en la consulta!",
+        error: error,
+      });
+    } else {
+      res.send({
+        status: "ok",
+        mensaje: "consulta exitosa",
+        citizen: citizen,
+      });
+    }
+  });
+});
+
 module.exports = citizen;
