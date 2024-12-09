@@ -1,9 +1,9 @@
 const express = require("express");
 const bd = require("./bd.js");
-const citizen = express();
+const species = express();
 
 // mostrar especies
-citizen.get("/api/citizen/listarespecies", (req, res) => {
+species.get("/api/species/listarespecies", (req, res) => {
   let query = "SELECT * FROM especies order by nombre asc";
   bd.query(query, (error, species) => {
     if (error) {
@@ -22,4 +22,4 @@ citizen.get("/api/citizen/listarespecies", (req, res) => {
   });
 });
 
-module.exports = citizen;
+module.exports = species;

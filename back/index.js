@@ -9,6 +9,7 @@ const cors = require("cors");
 
 const app = express(); // invocamos el método constructor de la clase express
 
+require('dotenv').config()
 //let permitidas = {};
 
 app.use(cors());
@@ -16,6 +17,8 @@ app.use(express.json()); // serializar los request y response
 
 app.use("/", require("./src/modules/citizen.js"));
 
-app.listen(4200, () => {
+const port = process.env.PORT || 4200
+
+app.listen(port, () => {
   console.log(`api rest encendida en el puerto 4200`);
 });

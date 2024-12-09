@@ -1,4 +1,4 @@
-let api = "http://localhost:4200/api/citizen/";
+let api = "http://localhost:4200/api/species/";
 let contenido = document.querySelector("#contenido");
 let btnNuevaEspecie = document.querySelector("#btnNuevaEspecie");
 
@@ -7,10 +7,10 @@ function listartodos() {
   fetch(api + "listarespecies")
     .then((res) => res.json())
     .then((res) => {
-      res.citizen.forEach((citizen) => {
+      res.species.forEach((species) => {
         let fila = `<tr>
-          <td>${citizen.idespecie}</td>
-          <td>${citizen.nombre_especie}</td>
+          <td>${species.idespecie}</td>
+          <td>${species.nombre_especie}</td>
           <td><button class="btnBorrar btn btn-danger"><i class="bi bi-trash"></i></button></td>
           <td><button class="btnEditar btn btn-primary"><i class="bi bi-pencil-square"></i></button></td>
           </tr><br>`;
