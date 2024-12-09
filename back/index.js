@@ -15,7 +15,15 @@ require('dotenv').config()
 app.use(cors());
 app.use(express.json()); // serializar los request y response
 
-app.use("/", require("./src/modules/citizen.js"));
+app.get('/', (req, res) =>{
+  res.status(200).send({
+      status:"OK",
+      mensaje: "Bienvenido a la API REST de interpolice",
+  })
+})
+
+app.use("/", require("./src/modules/citizen"));
+app.use("/", require("./src/modules/species"));
 
 const port = process.env.PORT || 4200
 
