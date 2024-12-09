@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 18-10-2024 a las 14:41:36
+-- Tiempo de generación: 09-12-2024 a las 06:48:19
 -- Versión del servidor: 10.4.32-MariaDB
--- Versión de PHP: 8.0.30
+-- Versión de PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -43,16 +43,23 @@ CREATE TABLE `antecedentes` (
 
 CREATE TABLE `ciudadanos` (
   `idciudadano` int(11) NOT NULL,
-  `nombre` varchar(150) NOT NULL,
-  `apellido` varchar(150) DEFAULT NULL,
-  `apodo` varchar(200) DEFAULT NULL,
-  `email` varchar(256) NOT NULL,
-  `password` varchar(300) NOT NULL,
+  `nombre_ciudadano` varchar(150) NOT NULL,
+  `apellido_ciudadano` varchar(150) DEFAULT NULL,
+  `apodo_ciudadano` varchar(200) DEFAULT NULL,
+  `email_ciudadano` varchar(256) NOT NULL,
+  `password_ciudadano` varchar(300) NOT NULL,
   `fechaorigen` date NOT NULL,
-  `foto` varchar(256) NOT NULL,
+  `foto_ciudadano` varchar(256) NOT NULL,
   `especies_idespecie` int(11) NOT NULL,
   `roles_idrol` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Volcado de datos para la tabla `ciudadanos`
+--
+
+INSERT INTO `ciudadanos` (`idciudadano`, `nombre_ciudadano`, `apellido_ciudadano`, `apodo_ciudadano`, `email_ciudadano`, `password_ciudadano`, `fechaorigen`, `foto_ciudadano`, `especies_idespecie`, `roles_idrol`) VALUES
+(4, 'sdf', 'sdf', 'sdf', 'cosmo@cosdma.com', '123456', '2024-12-04', '', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -75,8 +82,17 @@ CREATE TABLE `delitos` (
 
 CREATE TABLE `especies` (
   `idespecie` int(11) NOT NULL,
-  `nombre` varchar(200) NOT NULL
+  `nombre_especie` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Volcado de datos para la tabla `especies`
+--
+
+INSERT INTO `especies` (`idespecie`, `nombre_especie`) VALUES
+(1, 'alien'),
+(2, 'humano'),
+(3, 'robot');
 
 -- --------------------------------------------------------
 
@@ -98,8 +114,17 @@ CREATE TABLE `grado_delitos` (
 
 CREATE TABLE `roles` (
   `idrol` int(11) NOT NULL,
-  `nombre` varchar(200) NOT NULL
+  `nombre_rol` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Volcado de datos para la tabla `roles`
+--
+
+INSERT INTO `roles` (`idrol`, `nombre_rol`) VALUES
+(1, 'policia'),
+(2, 'ciudadano'),
+(3, 'administrador');
 
 --
 -- Índices para tablas volcadas
@@ -118,7 +143,7 @@ ALTER TABLE `antecedentes`
 --
 ALTER TABLE `ciudadanos`
   ADD PRIMARY KEY (`idciudadano`),
-  ADD UNIQUE KEY `email_UNIQUE` (`email`),
+  ADD UNIQUE KEY `email_UNIQUE` (`email_ciudadano`),
   ADD KEY `fk_ciudadanos_especies_idx` (`especies_idespecie`),
   ADD KEY `fk_ciudadanos_roles1_idx` (`roles_idrol`);
 
@@ -161,7 +186,7 @@ ALTER TABLE `antecedentes`
 -- AUTO_INCREMENT de la tabla `ciudadanos`
 --
 ALTER TABLE `ciudadanos`
-  MODIFY `idciudadano` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idciudadano` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `delitos`
@@ -173,7 +198,7 @@ ALTER TABLE `delitos`
 -- AUTO_INCREMENT de la tabla `especies`
 --
 ALTER TABLE `especies`
-  MODIFY `idespecie` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idespecie` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `grado_delitos`
@@ -185,7 +210,7 @@ ALTER TABLE `grado_delitos`
 -- AUTO_INCREMENT de la tabla `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `idrol` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idrol` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Restricciones para tablas volcadas
