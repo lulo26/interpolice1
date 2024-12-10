@@ -36,6 +36,7 @@ citizen.post("/api/citizen/crear", (req, res) => {
     fechaorigen: req.body.fecha,
     especies_idespecie: req.body.especie,
     roles_idrol: req.body.rol,
+    foto_ciudadano: req.body.foto,
   };
 
   // hacemos la consulta
@@ -72,6 +73,7 @@ citizen.put("/api/citizen/editar/:id", (req, res) => {
     fechaorigen: req.body.fecha,
     especies_idespecie: req.body.especie,
     roles_idrol: req.body.rol,
+    foto_ciudadano: req.body.foto,
   };
 
   let query = "UPDATE ciudadanos SET ? WHERE idciudadano = ?";
