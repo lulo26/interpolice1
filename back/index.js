@@ -24,6 +24,7 @@ app.get('/', (req, res) =>{
 
 app.use("/", require("./src/modules/citizen"));
 app.use("/", require("./src/modules/species"));
+app.use("/", require("./src/modules/delitos"));
 
 const port = process.env.PORT || 4200
 
