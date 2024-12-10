@@ -22,7 +22,7 @@ antecedentes.get("/api/antecedentes/listartodos", (req, res) => {
     });
   });
 
-  antecedentes.post("/api/antecedentes/crear", (req, res) => {
+/*   antecedentes.post("/api/antecedentes/crear", (req, res) => {
     let frmAntecedentesDatos = {
       grado_delito: req.body.nombre,
       descripcion_grado: req.body.descripcion,
@@ -98,6 +98,6 @@ antecedentes.get("/api/antecedentes/listartodos", (req, res) => {
       }
     });
   }); 
-  
+   */
 
 module.exports = antecedentes;
