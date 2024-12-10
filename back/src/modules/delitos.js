@@ -52,7 +52,7 @@ delitos.get("/api/delitos/listartodos", (req, res) => {
 
 // editar ciudadano
 
-citizen.put("/api/citizen/editar/:id", (req, res) => {
+/* citizen.put("/api/citizen/editar/:id", (req, res) => {
   let id = req.params.id;
   let frmDatos = {
     nombre_ciudadano: req.body.nombre,
@@ -105,6 +105,6 @@ citizen.delete("/api/citizen/borrar/:id", (req, res) => {
       });
     }
   });
-});
+}); */
 
 module.exports = delitos;
