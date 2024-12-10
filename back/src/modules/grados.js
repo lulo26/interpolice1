@@ -4,7 +4,7 @@ const grados = express();
 
 grados.get("/api/grados/listartodos", (req, res) => {
     let query =
-      "SELECT * FROM grados";
+      "SELECT * FROM grado_delitos";
     bd.query(query, (error, grados) => {
       if (error) {
         res.send({
@@ -30,7 +30,7 @@ grados.get("/api/grados/listartodos", (req, res) => {
 
   // hacemos la consulta
 
-  let query = "INSERT INTO grados SET ?";
+  let query = "INSERT INTO grado_delitos SET ?";
 
   bd.query(query, [frmGradosDatos], (error, grados) => {
     if (error) {
@@ -58,7 +58,7 @@ grados.put("/api/grados/editar/:id", (req, res) => {
     descripcion_grado: req.body.descripcion,
   };
 
-  let query = "UPDATE grados SET ? WHERE idgrado_delito = ?";
+  let query = "UPDATE grado_delitos SET ? WHERE idgrado_delito = ?";
 
   bd.query(query, [frmDatos, id], (error, grados) => {
     if (error) {
@@ -80,7 +80,7 @@ grados.put("/api/grados/editar/:id", (req, res) => {
 grados.delete("/api/grados/borrar/:id", (req, res) => {
   let id = req.params.id;
 
-  let consulta = "DELETE FROM grados WHERE idgrado_delito = ?";
+  let consulta = "DELETE FROM grado_delitos WHERE idgrado_delito = ?";
 
   bd.query(consulta, [id], (error, grados) => {
     if (error) {
