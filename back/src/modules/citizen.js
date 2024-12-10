@@ -73,7 +73,7 @@ citizen.put("/api/citizen/editar/:id", (req, res) => {
     fechaorigen: req.body.fecha,
     especies_idespecie: req.body.especie,
     roles_idrol: req.body.rol,
-    foto_ciudadano: req.body.foto,
+    foto_ciudadano: "nothing",
   };
 
   let query = "UPDATE ciudadanos SET ? WHERE idciudadano = ?";
