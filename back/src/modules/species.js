@@ -4,7 +4,7 @@ const species = express();
 
 // mostrar especies
 species.get("/api/species/listarespecies", (req, res) => {
-  let query = "SELECT * FROM especies order by nombre_especie asc";
+  let query = "SELECT * FROM especies";
   bd.query(query, (error, species) => {
     if (error) {
       res.send({
