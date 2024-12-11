@@ -25,7 +25,7 @@ grados.get("/api/grados/listartodos", (req, res) => {
   grados.get("/api/grados/listarid/:id", (req, res) => {
     let id = req.params.id;
     let query =
-      "SELECT * FROM grado_delitos WHERE idegrado = ?";
+      "SELECT * FROM grado_delitos WHERE idgrado_delito = ?";
     bd.query(query, [id], (error, grados)  => {
       if (error) {
         res.send({
