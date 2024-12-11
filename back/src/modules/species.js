@@ -77,7 +77,7 @@ species.put("/api/species/editar/:id", (req, res) => {
     nombre_especie: req.body.nombre,
   };
 
-  let query = "UPDATE species SET ? WHERE idespecie = ?";
+  let query = "UPDATE especies SET ? WHERE idespecie = ?";
 
   bd.query(query, [frmDatos, id], (error, species) => {
     if (error) {
