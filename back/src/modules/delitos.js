@@ -25,7 +25,7 @@ delitos.get("/api/delitos/listartodos", (req, res) => {
   delitos.get("/api/delitos/listarid/:id", (req, res) => {
     let id = req.params.id;
     let query =
-      "SELECT iddelito, nombre_delito, descripcion_delito, idgrado_delitos, idgrado_delito, grado_delito FROM delitos INNER JOIN grado_delitos ON idgrado_delito = iddelito WHERE iddelito = ?";
+      "SELECT iddelito, nombre_delito, descripcion_delito, idgrado_delitos, idgrado_delito, grado_delito FROM delitos INNER JOIN grado_delitos ON idgrado_delito = idgrado_delitos WHERE iddelito = ?";
     bd.query(query, [id], (error, delitos)  => {
       if (error) {
         res.send({
