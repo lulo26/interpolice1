@@ -102,7 +102,6 @@ delitos.put("/api/delitos/editar/:id", (req, res) => {
 
 delitos.delete("/api/delitos/borrar/:id", (req, res) => {
   let id = req.params.id;
-
   let consulta = "DELETE FROM delitos WHERE iddelito = ?";
 
   bd.query(consulta, [id], (error, delitos) => {

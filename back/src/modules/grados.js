@@ -120,4 +120,35 @@ grados.delete("/api/grados/borrar/:id", (req, res) => {
   });
 }); 
 
+/*grados.delete("/api/grados/borrar/:id", (req, res) => {
+  let id = req.params.id;
+  let consultarGrados = "SELECT iddelito FROM delitos WHERE idgrado_delitos = ?"
+  bd.query(consultarGrados, [id], (error, grados) => {
+    if (grados){
+      res.send({
+        status: "error",
+        mensaje: "existe un delito vinculado a este grado!",
+        error: error,
+      });
+    } else {
+      let consulta = "DELETE FROM grado_delitos WHERE idgrado_delito = ?";
+      bd.query(consulta, [id], (error, delitos) => {
+        if (error) {
+          res.send({
+            status: "error",
+            mensaje: "ocurrió un error en la consulta!",
+            error: error,
+          });
+        } else {
+          res.send({
+            status: "ok",
+            mensaje: "consulta exitosa",
+            grados: grados,
+          });
+        }
+      })
+    }
+  });
+}); */ 
+
 module.exports = grados;
