@@ -16,6 +16,9 @@ let rol = document.querySelector("#rol");
 let foto = document.querySelector("#foto");
 // ... ... ... ... ... ... ... ... ... ... ... ... ... //
 
+let api = "https://interpolice-omfr.onrender.com/api/citizen/";
+let apiSpecie = "https://interpolice-omfr.onrender.com/api/species/"
+
 let frmAction = "";
 
 const on = (element, event, selector, handler) => {
@@ -42,23 +45,23 @@ btnNuevo.addEventListener("click", () => {
   fecha.value = "";
   especie.value = "";
   rol.value = "";
-  foto.value = "";
   frmAction = "crear";
   frmCrearCitizen.show();
 });
 
 function showSpecies(){
-  especie.innerHTML = `<option selected value="0">Seleccione la especie</option> `
-  fetch(api + "listartodos")
+  especie.innerHTML = `<option selected hidden value="0">Seleccione la especie</option> `
+  fetch(apiSpecie + "listarespecies")
     .then((res) => res.json())
-    .then((data) => {
-      data.forEach((citizen) => {
-        especie.innerHTML = `<option selected value="${citizen.especies_idespecie}" >${citizen.nombre_especie}</option> `;
+    .then((res) => {
+      res.species.forEach((species) => {
+        console.log(species);
+        
+        especie.innerHTML += `<option value="${species.idespecie}" >${species.nombre_especie}</option> `;
       });
     });
 }
 
-let api = "https://interpolice-omfr.onrender.com/api/citizen/";
 
 // mostrar elementos en la tabla
 function listartodos() {
@@ -97,7 +100,7 @@ frmCitizen.addEventListener("submit", (e) => {
       headers: {
         "content-type": "application/json",
       },
-      body: JSON.stringify({
+        body: JSON.stringify({
         nombre: nombre.value,
         apellido: apellido.value,
         email: email.value,
@@ -119,13 +122,15 @@ frmCitizen.addEventListener("submit", (e) => {
 
   // editar ciudadano
   if (frmAction === "editar") {
+    let fila = e.target.parentNode.parentNode.parentNode;
+    let idform = fila.firstElementChild.innerText
     fetch(api + "editar/" + idform, {
       method: "PUT",
       headers: {
         "content-type": "application/json",
       },
 
-      body: JSON.stringify({
+        body: JSON.stringify({
         nombre: nombre.value,
         apellido: apellido.value,
         email: email.value,
@@ -142,7 +147,7 @@ frmCitizen.addEventListener("submit", (e) => {
         console.log(res.status, res.respuesta);
         alert("exito");
         frmCrearCitizen.hide();
-        location.reload();
+        //location.reload();
       });
   }
   frmCrearCitizen.hide();
@@ -169,7 +174,6 @@ on(document, "click", ".btnBorrar", (e) => {
 
 // llamar formulario de edición
 on(document, "click", ".btnEditar", (e) => {
-  especie.innerHTML = `<option selected value="" > </option> `
   let fila = e.target.parentNode.parentNode.parentNode;
   let idform = fila.firstElementChild.innerText;
   fetch(api + "listarid/" + idform) 
@@ -183,8 +187,8 @@ on(document, "click", ".btnEditar", (e) => {
       apodo.value = citizen.apodo_ciudadano;
       password.value = citizen.password_ciudadano;
       fecha.value = citizen.fechaorigen;
-      especie.innerHTML = `<option selected value="${citizen.especies_idespecie}" >${citizen.nombre_especie}</option> `;
-      rol.value = citizen.nombre_rol;
+      especie.innerHTML += `<option selected hidden value="${citizen.especies_idespecie}" >${citizen.nombre_especie}</option> `;
+      rol.innerHTML += `<option selected hidden value="${citizen.roles_idrol}" >${citizen.nombre_rol}</option> `;
       frmAction = "editar";
       frmCrearCitizen.show();
     })
