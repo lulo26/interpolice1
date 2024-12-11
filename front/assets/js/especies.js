@@ -1,6 +1,7 @@
 let api = "https://interpolice-omfr.onrender.com/api/species/";
 let contenido = document.querySelector("#contenido");
 let btnNuevaEspecie = document.querySelector("#btnNuevaEspecie");
+let frmSpecies = document.querySelector("#frmSpecies")
 let frmAction = "";
 
 const on = (element, event, selector, handler) => {
@@ -69,7 +70,7 @@ frmSpecies.addEventListener("submit", (e) => {
 
   // editar ciudadano
   if (frmAction === "editar") {
-    fetch(api + "editar", {
+    fetch(api + "editar/" + idform, {
       method: "PUT",
       headers: {
         "content-type": "application/json",
@@ -113,26 +114,14 @@ on(document, "click", ".btnBorrar", (e) => {
 let idform = "";
 on(document, "click", ".btnEditar", (e) => {
   let fila = e.target.parentNode.parentNode.parentNode;
-  console.log(fila);
   let idciudadano = fila.children[0].innerText;
-  console.log(idform);
   idform = idciudadano;
-  nombre.value = fila.children[1].innerText;
-  frmCrearEspecie.show();
-});
-
-/*  on(document, "click", ".btnEditar", (e) => {
-    let fila = e.target.parentNode.parentNode.parentNode;
-    let iddelito = fila.children[0].innerText;
-    idform = iddelito;
-    fetch(api + "listarid/" + idform) 
-      .then((res) => res.json())
-      .then((res) => {
-        delitos = res.delitos[0]
-        console.log(delitos);
-        nombre.value = delitos.nombre_delito;
-        grado.innerHTML = `<option selected hidden value="${delitos.idgrado_delito}" >${delitos.grado_delito}</option>`
-        descripcion.value = delitos.descripcion_delito;
-    frmCrearDelito.show();
-  });
-})*/
+  fetch(api + "listarid/" + idform) 
+  .then((res) => res.json())
+  .then((res) => {
+    species = res.species[0]
+    console.log(species);
+    nombre.value = species.nombre_especie;
+    frmCrearEspecie.show();
+  })
+})

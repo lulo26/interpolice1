@@ -37,7 +37,6 @@ const frmCrearCitizen = new bootstrap.Modal(
 
 // disparar la modal
 btnNuevo.addEventListener("click", () => {
-  showSpecies()
   cleanInput()
   frmAction = "crear";
   frmCrearCitizen.show();
@@ -50,7 +49,6 @@ function cleanInput(){
   email.value = "";
   apodo.value = "";
   fecha.value = "";
-  especie.value = "";
 }
 
 function showSpecies(){
@@ -91,6 +89,7 @@ function listartodos() {
 
 document.addEventListener("DOMContentLoaded", () => {
   listartodos();
+  showSpecies()
 });
 
 // boton submit

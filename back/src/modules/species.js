@@ -25,7 +25,7 @@ species.get("/api/species/listarespecies", (req, res) => {
 species.get("/api/species/listarid/:id", (req, res) => {
   let id = req.params.id;
   let query =
-    "SELECT * FROM species WHERE idespecie = ?";
+    "SELECT * FROM especies WHERE idespecie = ?";
   bd.query(query, [id], (error, species)  => {
     if (error) {
       res.send({
