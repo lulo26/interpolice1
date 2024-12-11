@@ -107,7 +107,7 @@ frmCitizen.addEventListener("submit", (e) => {
 
   // editar ciudadano
   if (frmAction === "editar") {
-    fetch(api + "editar", {
+    fetch(api + "editar/" + idform, {
       method: "PUT",
       headers: {
         "content-type": "application/json",
@@ -119,13 +119,10 @@ frmCitizen.addEventListener("submit", (e) => {
         email: email.value,
         apodo: apodo.value,
         fecha: fecha.value,
+        password: password.value,
         especie: especie.value,
         rol: rol.value,
-<<<<<<< HEAD
         foto: "img",
-=======
-        foto: foto.value
->>>>>>> e9675230c04f8927870a3bf84eb546acbc002abd
       }),
     })
       .then((res) => res.json())
@@ -159,9 +156,15 @@ on(document, "click", ".btnBorrar", (e) => {
 });
 
 // llamar formulario de edición
-let idform = "";
 on(document, "click", ".btnEditar", (e) => {
   let fila = e.target.parentNode.parentNode.parentNode;
+  let idform = fila.firstElementChild.innerText;
+  fetch(api + "listarid/" + idform) 
+  .then((res) => res.json())
+    .then((res) => {
+      citizen = json.citizen[0]
+    })
+ /*  let fila = e.target.parentNode.parentNode.parentNode;
   console.log(fila);
   let idciudadano = fila.children[0].innerText;
   console.log(idform);
@@ -175,5 +178,5 @@ on(document, "click", ".btnEditar", (e) => {
   especie.value = fila.children[6].innerText;
   rol.value = fila.children[7].innerText;
   frmAction = "editar";
-  frmCrearCitizen.show();
+  frmCrearCitizen.show(); */
 });
