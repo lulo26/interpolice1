@@ -4,7 +4,7 @@ const delitos = express();
 
 delitos.get("/api/delitos/listartodos", (req, res) => {
     let query =
-      "SELECT * FROM delitos INNER JOIN grado_delitos ON idgrado_delito = iddelito";
+      "SELECT iddelito, nombre_delito, descripcion_delito, grado_delitos, idgrado_delito, grado_delito FROM delitos INNER JOIN grado_delitos ON idgrado_delito = iddelito";
     bd.query(query, (error, delitos) => {
       if (error) {
         res.send({
