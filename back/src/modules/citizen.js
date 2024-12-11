@@ -24,10 +24,10 @@ citizen.get("/api/citizen/listartodos", (req, res) => {
   });
 });
 
-citizen.get("/api/citizen/listarid/id:", (req, res) => {
+citizen.get("/api/citizen/listarid/:id", (req, res) => {
   let id = req.params.id;
   let query =
-    "SELECT idciudadano, nombre_ciudadano, apellido_ciudadano, email_ciudadano, apodo_ciudadano, fechaorigen, nombre_especie, nombre_rol FROM ciudadanos inner join especies on idespecie = especies_idespecie inner join roles on idrol = roles_idrol WHERE idciudadano = ? order by nombre_ciudadano asc";
+    "SELECT idciudadano, nombre_ciudadano, apellido_ciudadano, email_ciudadano, apodo_ciudadano, fechaorigen, nombre_especie, nombre_rol FROM ciudadanos inner join especies on idespecie = especies_idespecie inner join roles on idrol = roles_idrol WHERE idciudadano = ?";
   bd.query(query, [id], (error, citizen)  => {
     if (error) {
       res.send({
