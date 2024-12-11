@@ -121,7 +121,11 @@ frmCitizen.addEventListener("submit", (e) => {
         fecha: fecha.value,
         especie: especie.value,
         rol: rol.value,
+<<<<<<< HEAD
         foto: "img",
+=======
+        foto: foto.value
+>>>>>>> e9675230c04f8927870a3bf84eb546acbc002abd
       }),
     })
       .then((res) => res.json())

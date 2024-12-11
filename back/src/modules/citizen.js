@@ -73,7 +73,7 @@ citizen.put("/api/citizen/editar/:id", (req, res) => {
     fechaorigen: req.body.fecha,
     especies_idespecie: req.body.especie,
     roles_idrol: req.body.rol,
-    foto_ciudadano: req.body.foto,
+    foto_ciudadano: "nothing",
   };
 
   let query = "UPDATE ciudadanos SET ? WHERE idciudadano = ?";
@@ -101,28 +101,6 @@ citizen.delete("/api/citizen/borrar/:id", (req, res) => {
   let consulta = "DELETE FROM ciudadanos WHERE idciudadano = ?";
 
   bd.query(consulta, [id], (error, citizen) => {
-    if (error) {
-      res.send({
-        status: "error",
-        mensaje: "ocurrió un error en la consulta!",
-        error: error,
-      });
-    } else {
-      res.send({
-        status: "ok",
-        mensaje: "consulta exitosa",
-        citizen: citizen,
-      });
-    }
-  });
-});
-
-// especies
-
-// mostrar especies
-citizen.get("/api/citizen/listarespecies", (req, res) => {
-  let query = "SELECT * FROM especies order by nombre_especie asc";
-  bd.query(query, (error, citizen) => {
     if (error) {
       res.send({
         status: "error",
