@@ -120,3 +120,19 @@ on(document, "click", ".btnEditar", (e) => {
   nombre.value = fila.children[1].innerText;
   frmCrearEspecie.show();
 });
+
+/*  on(document, "click", ".btnEditar", (e) => {
+    let fila = e.target.parentNode.parentNode.parentNode;
+    let iddelito = fila.children[0].innerText;
+    idform = iddelito;
+    fetch(api + "listarid/" + idform) 
+      .then((res) => res.json())
+      .then((res) => {
+        delitos = res.delitos[0]
+        console.log(delitos);
+        nombre.value = delitos.nombre_delito;
+        grado.innerHTML = `<option selected hidden value="${delitos.idgrado_delito}" >${delitos.grado_delito}</option>`
+        descripcion.value = delitos.descripcion_delito;
+    frmCrearDelito.show();
+  });
+})*/
