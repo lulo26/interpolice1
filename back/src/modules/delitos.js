@@ -78,7 +78,7 @@ delitos.put("/api/delitos/editar/:id", (req, res) => {
   let frmDatos = {
     nombre_delito: req.body.nombre,
     descripcion_delito: req.body.descripcion,
-    grado_delitos_idgrado_delito: req.body.grado,
+    grado_delitos: req.body.grado,
   };
 
   let query = "UPDATE delitos SET ? WHERE iddelito = ?";

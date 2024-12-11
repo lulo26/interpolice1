@@ -3,6 +3,7 @@ let contenido = document.querySelector("#contenido");
 let btnNuevaEspecie = document.querySelector("#btnNuevaEspecie");
 let frmSpecies = document.querySelector("#frmSpecies")
 let frmAction = "";
+let nombre = document.querySelector("#nombre")
 
 const on = (element, event, selector, handler) => {
   element.addEventListener(event, (e) => {
@@ -122,6 +123,7 @@ on(document, "click", ".btnEditar", (e) => {
     species = res.species[0]
     console.log(species);
     nombre.value = species.nombre_especie;
+    frmAction = "editar";
     frmCrearEspecie.show();
   })
 })

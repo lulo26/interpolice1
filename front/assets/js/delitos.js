@@ -151,6 +151,7 @@ function listartodos() {
         nombre.value = delitos.nombre_delito;
         grado.innerHTML += `<option selected hidden value="${delitos.idgrado_delito}" >${delitos.grado_delito}</option>`
         descripcion.value = delitos.descripcion_delito;
+        frmAction = "editar";
     frmCrearDelito.show();
   });
 })

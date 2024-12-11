@@ -129,6 +129,7 @@ function listartodos() {
         console.log(grados);
         grado.value = grados.grado_delito;
         descripcion.value = grados.descripcion_grado;
+        frmAction = "editar";
         frmCrearGrado.show();
   })
 })

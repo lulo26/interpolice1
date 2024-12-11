@@ -75,7 +75,7 @@ grados.get("/api/grados/listartodos", (req, res) => {
 grados.put("/api/grados/editar/:id", (req, res) => {
   let id = req.params.id;
   let frmDatos = {
-    grado_delito: req.body.nombre,
+    grado_delito: req.body.grado,
     descripcion_grado: req.body.descripcion,
   };
 
