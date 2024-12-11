@@ -4,7 +4,7 @@ const delitos = express();
 
 delitos.get("/api/delitos/listartodos", (req, res) => {
     let query =
-      "SELECT iddelito, nombre_delito, descripcion_delito, grado_delitos, idgrado_delito, grado_delito FROM delitos INNER JOIN grado_delitos ON idgrado_delito = iddelito";
+      "SELECT iddelito, nombre_delito, descripcion_delito, idgrado_delitos, idgrado_delito, grado_delito FROM delitos INNER JOIN grado_delitos ON idgrado_delito = iddelito";
     bd.query(query, (error, delitos) => {
       if (error) {
         res.send({
@@ -25,7 +25,7 @@ delitos.get("/api/delitos/listartodos", (req, res) => {
   delitos.get("/api/delitos/listarid/:id", (req, res) => {
     let id = req.params.id;
     let query =
-      "SELECT iddelito, nombre_delito, descripcion_delito, grado_delitos, idgrado_delito, grado_delito FROM delitos INNER JOIN grado_delitos ON idgrado_delito = iddelito WHERE iddelito = ?";
+      "SELECT iddelito, nombre_delito, descripcion_delito, idgrado_delitos, idgrado_delito, grado_delito FROM delitos INNER JOIN grado_delitos ON idgrado_delito = iddelito WHERE iddelito = ?";
     bd.query(query, [id], (error, delitos)  => {
       if (error) {
         res.send({
@@ -47,7 +47,7 @@ delitos.get("/api/delitos/listartodos", (req, res) => {
   let frmDelitosDatos = {
     nombre_delito: req.body.nombre,
     descripcion_delito: req.body.descripcion,
-    grado_delitos: req.body.grado,
+    idgrado_delitos: req.body.grado,
   };
 
   // hacemos la consulta
@@ -78,7 +78,7 @@ delitos.put("/api/delitos/editar/:id", (req, res) => {
   let frmDatos = {
     nombre_delito: req.body.nombre,
     descripcion_delito: req.body.descripcion,
-    grado_delitos: req.body.grado,
+    idgrado_delitos: req.body.grado,
   };
 
   let query = "UPDATE delitos SET ? WHERE iddelito = ?";
