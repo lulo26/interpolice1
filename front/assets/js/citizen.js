@@ -162,21 +162,17 @@ on(document, "click", ".btnEditar", (e) => {
   fetch(api + "listarid/" + idform) 
   .then((res) => res.json())
     .then((res) => {
-      citizen = json.citizen[0]
+      citizen = res.citizen[0]
+      console.log(citizen);
+      nombre.value = citizen.nombre_ciudadano;
+      apellido.value = citizen.apellido_ciudadano;
+      email.value = citizen.email_ciudadano;
+      apodo.value = citizen.apodo_ciudadano;
+      password.value = citizen.password_ciudadano;
+      fecha.value = citizen.fechaorigen;
+      especie.value = `<option selected hidden value="${citizen.especies_idespecie}" >${citizen.nombre_especie}</option> `;
+      rol.value = citizen.nombre_rol;
+      frmAction = "editar";
+      frmCrearCitizen.show();
     })
- /*  let fila = e.target.parentNode.parentNode.parentNode;
-  console.log(fila);
-  let idciudadano = fila.children[0].innerText;
-  console.log(idform);
-  idform = idciudadano;
-  nombre.value = fila.children[1].innerText;
-  apellido.value = fila.children[2].innerText;
-  email.value = fila.children[3].innerText;
-  apodo.value = fila.children[4].innerText;
-  password.value = fila.children[5].innerText;
-  fecha.value = fila.children[5].innerText;
-  especie.value = fila.children[6].innerText;
-  rol.value = fila.children[7].innerText;
-  frmAction = "editar";
-  frmCrearCitizen.show(); */
 });
