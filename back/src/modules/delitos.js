@@ -47,7 +47,7 @@ delitos.get("/api/delitos/listartodos", (req, res) => {
   let frmDelitosDatos = {
     nombre_delito: req.body.nombre,
     descripcion_delito: req.body.descripcion,
-    grado_delito: req.body.grado,
+    grado_delitos: req.body.grado,
   };
 
   // hacemos la consulta
