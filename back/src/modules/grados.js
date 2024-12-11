@@ -22,6 +22,27 @@ grados.get("/api/grados/listartodos", (req, res) => {
     });
   });
 
+  grados.get("/api/grados/listarid/:id", (req, res) => {
+    let id = req.params.id;
+    let query =
+      "SELECT * FROM grados WHERE idegrado = ?";
+    bd.query(query, [id], (error, grados)  => {
+      if (error) {
+        res.send({
+          status: "error",
+          mensaje: "ocurrió un error en la consulta!",
+          error: error,
+        });
+      } else {
+        res.send({
+          status: "ok",
+          mensaje: "consulta exitosa",
+          grados: grados,
+        });
+      }
+    });
+  });
+
   grados.post("/api/grados/crear", (req, res) => {
   let frmGradosDatos = {
     grado_delito: req.body.nombre,

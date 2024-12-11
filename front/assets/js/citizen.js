@@ -14,6 +14,7 @@ let fecha = document.querySelector("#fecha");
 let especie = document.querySelector("#especie");
 let rol = document.querySelector("#rol");
 let foto = document.querySelector("#foto");
+
 // ... ... ... ... ... ... ... ... ... ... ... ... ... //
 
 let api = "https://interpolice-omfr.onrender.com/api/citizen/";
@@ -37,26 +38,28 @@ const frmCrearCitizen = new bootstrap.Modal(
 // disparar la modal
 btnNuevo.addEventListener("click", () => {
   showSpecies()
-  // limpiar los input
+  cleanInput()
+  frmAction = "crear";
+  frmCrearCitizen.show();
+});
+
+function cleanInput(){
+  let idform = "";
   nombre.value = "";
   apellido.value = "";
   email.value = "";
   apodo.value = "";
   fecha.value = "";
   especie.value = "";
-  rol.value = "";
-  frmAction = "crear";
-  frmCrearCitizen.show();
-});
+}
 
 function showSpecies(){
-  especie.innerHTML = `<option selected hidden value="0">Seleccione la especie</option> `
+  especie.innerHTML = `<option selected hidden value="0">Seleccione la especie</option>`
   fetch(apiSpecie + "listarespecies")
     .then((res) => res.json())
     .then((res) => {
       res.species.forEach((species) => {
         console.log(species);
-        
         especie.innerHTML += `<option value="${species.idespecie}" >${species.nombre_especie}</option> `;
       });
     });
@@ -78,8 +81,8 @@ function listartodos() {
         <td>${citizen.fechaorigen}</td>
         <td>${citizen.nombre_especie}</td>
         <td>${citizen.nombre_rol}</td>
-        <td><button class="btnBorrar btn btn-danger"><i class="bi bi-trash"></i></button></td>
-        <td><button class="btnEditar btn btn-primary"><i class="bi bi-pencil-square"></i></button></td>
+        <td><button class="btnBorrar btn btn-danger" id="${citizen.idciudadano}"><i class="bi bi-trash"></i></button></td>
+        <td><button class="btnEditar btn btn-primary" id="${citizen.idciudadano}"><i class="bi bi-pencil-square"></i></button></td>
         </tr><br>`;
         contenido.innerHTML += fila;
       });
@@ -122,8 +125,6 @@ frmCitizen.addEventListener("submit", (e) => {
 
   // editar ciudadano
   if (frmAction === "editar") {
-    let fila = e.target.parentNode.parentNode.parentNode;
-    let idform = fila.firstElementChild.innerText
     fetch(api + "editar/" + idform, {
       method: "PUT",
       headers: {
@@ -147,7 +148,7 @@ frmCitizen.addEventListener("submit", (e) => {
         console.log(res.status, res.respuesta);
         alert("exito");
         frmCrearCitizen.hide();
-        //location.reload();
+        location.reload();
       });
   }
   frmCrearCitizen.hide();
@@ -172,10 +173,12 @@ on(document, "click", ".btnBorrar", (e) => {
   }
 });
 
+let idform = "";
 // llamar formulario de edición
 on(document, "click", ".btnEditar", (e) => {
   let fila = e.target.parentNode.parentNode.parentNode;
-  let idform = fila.firstElementChild.innerText;
+  let idciudadano = fila.children[0].innerText;
+  idform = idciudadano;  
   fetch(api + "listarid/" + idform) 
   .then((res) => res.json())
     .then((res) => {

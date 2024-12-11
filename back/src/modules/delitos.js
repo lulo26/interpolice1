@@ -22,6 +22,27 @@ delitos.get("/api/delitos/listartodos", (req, res) => {
     });
   });
 
+  delitos.get("/api/delitos/listarid/:id", (req, res) => {
+    let id = req.params.id;
+    let query =
+      "SELECT * FROM delitos WHERE iddelito = ?";
+    bd.query(query, [id], (error, delitos)  => {
+      if (error) {
+        res.send({
+          status: "error",
+          mensaje: "ocurrió un error en la consulta!",
+          error: error,
+        });
+      } else {
+        res.send({
+          status: "ok",
+          mensaje: "consulta exitosa",
+          delitos: delitos,
+        });
+      }
+    });
+  });
+
   delitos.post("/api/delitos/crear", (req, res) => {
   let frmDelitosDatos = {
     nombre_delito: req.body.nombre,

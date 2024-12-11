@@ -22,6 +22,27 @@ species.get("/api/species/listarespecies", (req, res) => {
   });
 });
 
+species.get("/api/species/listarid/:id", (req, res) => {
+  let id = req.params.id;
+  let query =
+    "SELECT * FROM species WHERE idespecie = ?";
+  bd.query(query, [id], (error, species)  => {
+    if (error) {
+      res.send({
+        status: "error",
+        mensaje: "ocurrió un error en la consulta!",
+        error: error,
+      });
+    } else {
+      res.send({
+        status: "ok",
+        mensaje: "consulta exitosa",
+        species: species,
+      });
+    }
+  });
+});
+
 species.post("/api/species/crear", (req, res) => {
   let frmSpeciesDatos = {
     nombre_especie: req.body.nombre,
