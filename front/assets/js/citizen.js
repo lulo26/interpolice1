@@ -33,6 +33,7 @@ const frmCrearCitizen = new bootstrap.Modal(
 
 // disparar la modal
 btnNuevo.addEventListener("click", () => {
+  showSpecies()
   // limpiar los input
   nombre.value = "";
   apellido.value = "";
@@ -45,6 +46,17 @@ btnNuevo.addEventListener("click", () => {
   frmAction = "crear";
   frmCrearCitizen.show();
 });
+
+function showSpecies(){
+  especie.innerHTML = `<option selected value="0">Seleccione la especie</option> `
+  fetch(api + "listartodos")
+    .then((res) => res.json())
+    .then((data) => {
+      data.forEach((citizen) => {
+        especie.innerHTML = `<option selected value="${citizen.especies_idespecie}" >${citizen.nombre_especie}</option> `;
+      });
+    });
+}
 
 let api = "https://interpolice-omfr.onrender.com/api/citizen/";
 
@@ -157,6 +169,7 @@ on(document, "click", ".btnBorrar", (e) => {
 
 // llamar formulario de edición
 on(document, "click", ".btnEditar", (e) => {
+  especie.innerHTML = `<option selected value="" > </option> `
   let fila = e.target.parentNode.parentNode.parentNode;
   let idform = fila.firstElementChild.innerText;
   fetch(api + "listarid/" + idform) 
@@ -170,7 +183,7 @@ on(document, "click", ".btnEditar", (e) => {
       apodo.value = citizen.apodo_ciudadano;
       password.value = citizen.password_ciudadano;
       fecha.value = citizen.fechaorigen;
-      especie.value = `<option selected hidden value="${citizen.especies_idespecie}" >${citizen.nombre_especie}</option> `;
+      especie.innerHTML = `<option selected value="${citizen.especies_idespecie}" >${citizen.nombre_especie}</option> `;
       rol.value = citizen.nombre_rol;
       frmAction = "editar";
       frmCrearCitizen.show();
