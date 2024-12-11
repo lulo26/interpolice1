@@ -6,7 +6,7 @@ const citizen = express();
 // mostrtar los ciudadanos
 citizen.get("/api/citizen/listartodos", (req, res) => {
   let query =
-    "SELECT idciudadano, roles_idrol, especies_idespecie ,nombre_ciudadano, apellido_ciudadano, email_ciudadano, apodo_ciudadano, fechaorigen, nombre_especie, nombre_rol FROM ciudadanos inner join especies on idespecie = especies_idespecie inner join roles on idrol = roles_idrol order by nombre_ciudadano asc";
+    "SELECT idciudadano, roles_idrol, especies_idespecie ,nombre_ciudadano, apellido_ciudadano, email_ciudadano, apodo_ciudadano, fechaorigen, nombre_especie, nombre_rol FROM ciudadanos inner join especies on idespecie = especies_idespecie inner join roles on idrol = roles_idrol order by idciudadano asc";
   bd.query(query, (error, citizen) => {
     if (error) {
       res.send({
